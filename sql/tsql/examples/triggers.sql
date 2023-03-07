@@ -93,3 +93,26 @@ FOR UPDATE
 AS
     PRINT 'This is the trigger from create-or-replace'
 GO
+
+CREATE TRIGGER myTrigger ON myTable
+FOR UPDATE
+AS
+    BEGIN
+        if update(f1) and update(f2)
+        and not (update(f1) or update(f3) or update(f4) or update(f5) or update(f6))
+            PRINT 'This is the trigger from various update()-checks'
+
+    END
+GO
+
+--case for when an ordinary SQL-if precedes the trigger "if update()"
+CREATE TRIGGER myTrigger ON myTable
+FOR UPDATE
+AS
+if @variable="some value"
+BEGIN
+    if update(f1) and update(f2)
+    and not (update(f1) or update(f3) or update(f4) or update(f5) or update(f6))
+        PRINT 'This is the trigger from various update()-checks'
+END
+GO
