@@ -88,7 +88,6 @@ ddl_clause
     | alter_database_audit_specification
     | alter_db_role
     | alter_endpoint
-    | create_or_alter_event_session
     | alter_external_data_source
     | alter_external_library
     | alter_external_resource_pool
@@ -126,6 +125,7 @@ ddl_clause
     | create_asymmetric_key
     | create_column_encryption_key
     | create_column_master_key
+    | create_columnstore_index
     | create_credential
     | create_cryptographic_provider
     | create_database
@@ -138,14 +138,16 @@ ddl_clause
     | create_fulltext_catalog
     | create_fulltext_stoplist
     | create_index
-    | create_columnstore_index
-    | create_nonclustered_columnstore_index
     | create_login_azure_sql
     | create_login_pdw
     | create_login_sql_server
     | create_master_key_azure_sql
     | create_master_key_sql_server
+    | create_nonclustered_columnstore_index
     | create_or_alter_broker_priority
+    | create_or_alter_event_session
+    | create_partition_function
+    | create_partition_scheme
     | create_remote_service_binding
     | create_resource_pool
     | create_route
@@ -168,8 +170,7 @@ ddl_clause
     | create_workload_group
     | create_xml_index
     | create_xml_schema_collection
-    | create_partition_function
-    | create_partition_scheme
+    | disable_trigger
     | drop_aggregate
     | drop_application_role
     | drop_assembly
@@ -232,12 +233,12 @@ ddl_clause
     | drop_view
     | drop_workload_group
     | drop_xml_schema_collection
-    | disable_trigger
     | enable_trigger
     | lock_table
     | truncate_table
     | update_statistics
     ;
+
 backup_statement
     : backup_database
     | backup_log
@@ -253,13 +254,13 @@ cfl_statement
     | continue_statement
     | goto_statement
     | if_statement
+    | print_statement
+    | raiseerror_statement
     | return_statement
     | throw_statement
     | try_catch_statement
     | waitfor_statement
     | while_statement
-    | print_statement
-    | raiseerror_statement
     ;
 
 dml_trigger_cfl_statement
@@ -366,23 +367,23 @@ empty_statement
     ;
 
 another_statement
-    : declare_statement
-    | execute_statement
-    | cursor_statement
+    : alter_queue
+    | checkpoint_statement
     | conversation_statement
     | create_contract
     | create_queue
-    | alter_queue
+    | cursor_statement
+    | declare_statement
+    | execute_statement
     | kill_statement
     | message_statement
+    | reconfigure_statement
     | security_statement
     | set_statement
+    | setuser_statement
+    | shutdown_statement
     | transaction_statement
     | use_statement
-    | setuser_statement
-    | reconfigure_statement
-    | shutdown_statement
-    | checkpoint_statement
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-application-role-transact-sql

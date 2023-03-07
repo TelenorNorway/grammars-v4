@@ -109,6 +109,9 @@ GO
 CREATE TRIGGER myTrigger ON myTable
 FOR UPDATE
 AS
+declare @variable varchar(100)
+select @variable = someFunctionToProvideAValue()
+
 if @variable="some value"
 BEGIN
     if update(f1) and update(f2)
