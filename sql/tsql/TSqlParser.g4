@@ -2191,7 +2191,7 @@ create_or_alter_trigger
     ;
 
 create_or_alter_dml_trigger
-    : ((CREATE (OR ALTER)?) | ALTER) TRIGGER simple_name
+    : ((CREATE (OR (ALTER | REPLACE))?) | ALTER) TRIGGER simple_name
       ON table_name
       (WITH dml_trigger_option (',' dml_trigger_option)* )?
       (FOR | AFTER | INSTEAD OF)

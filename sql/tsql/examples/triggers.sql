@@ -87,3 +87,9 @@ DISABLE TRIGGER safety ON DATABASE;
 GO
 DISABLE Trigger ALL ON ALL SERVER;
 GO
+
+CREATE OR REPLACE TRIGGER myTrigger ON myTable
+FOR UPDATE
+AS
+    PRINT 'This is the trigger from create-or-replace'
+GO
